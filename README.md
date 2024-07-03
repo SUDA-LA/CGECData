@@ -10,10 +10,11 @@ We decide to officially open source all the raw data of MuCGEC and NaSGEC. In ad
 The source and description of each dataset can be found in their respective README.
 
 ## Data Processing
+The shell script [process_cgec_data.sh](process_cgec_data.sh) is used to convert ```raw_cgec``` to ```cmcgec```.
+
 We perform the following processing steps: 
-- Get para file from M2 file of MuCGEC-Test
 - Remove special tag in MuCGEC, NaSGEC and NaCGEC
 - Handle data leakage problem for native speaker CGEC datasets
-- Correct unreasonable csc error for FCGEC-Dev and NaSGEC-Exam
+- Correct unreasonable spelling error, which is mainly caused by OCR, for FCGEC-Dev and NaSGEC-Exam (A large number of spelling errors are omitted by human annotators)
 
-Please refer to [process_cgec_data.sh](process_cgec_data.sh) for details of the processing procedure for converting ```raw_cgec``` to ```cmcgec```.
+Details of the hyperparameters and processing steps can be found in the script.
