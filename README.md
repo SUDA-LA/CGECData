@@ -1,20 +1,4 @@
-# CMCGEC
-We realise **CMCGEC** (**C**leaned **M**ulti-reference Datasets for **C**hinese **G**rammatical **E**rror **C**orrection) in this repository.
+# GECData
+我们发布了M2格式的[MuCGEC-Test](GECData/MuCGEC/MuCGEC-V1/mucgec.test.m2)数据，可以和[天池平台](https://tianchi.aliyun.com/dataset/131328/submission)保持一致。
 
-## Raw Data
-
-We decide to officially open source all the raw data of MuCGEC and NaSGEC. In addition, we also collect the data of FCGEC and NaCGEC. We convert all datasets into the following formats:
-```
-[idx][\t][src][\t][tgt][\t][tgt] ...
-```
-The source and description of each dataset can be found in their respective README.
-
-## Data Processing
-The shell script [process_cgec_data.sh](process_cgec_data.sh) is used to convert ```raw_cgec``` to ```cmcgec```.
-
-We perform the following processing steps: 
-- Remove special tag in MuCGEC, NaSGEC and NaCGEC
-- Handle data leakage problem for native speaker CGEC datasets
-- Correct unreasonable spelling error, which is mainly caused by OCR, for FCGEC-Dev and NaSGEC-Exam (A large number of spelling errors are omitted by human annotators)
-
-Details of the hyperparameters and processing steps can be found in the script.
+我们发布了多个版本的FCGEC、NaCGEC和NaSGEC-Exam数据，详见各自目录的README。

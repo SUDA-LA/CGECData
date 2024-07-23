@@ -1,0 +1,1 @@
+请参见[NaSGEC](https://github.com/HillZhang1999/NaSGEC)的官方仓库，数据在[这里](../NaSGEC-Exam-V3/raw_cgec/README.md)开源

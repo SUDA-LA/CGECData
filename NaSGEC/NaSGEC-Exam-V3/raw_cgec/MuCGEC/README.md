@@ -1,0 +1,1 @@
+We provide MuCGEC-Test files in M2 format to help researchers quickly obtain the same results as [online evaluation](https://tianchi.aliyun.com/dataset/131328/submission). Please refer to [MuCGEC](https://github.com/HillZhang1999/MuCGEC)'s official repository for more details.
