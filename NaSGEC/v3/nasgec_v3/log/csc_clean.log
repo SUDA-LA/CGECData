@@ -1,0 +1,61 @@
+
+        Verification Summary
+        ----------------------------------------------------------------
+        - Number of Verified Sentences:            466
+        - Number of Correct Sentences:             54
+
+        
+Processing nasgec_v3/tmp/handle_leakage/fcgec.dev.para...
+
+            Changes Summary
+            ----------------------------------------------------------------
+            - Overall Changes:
+                Number of Changes:                     2000
+                Number of Sentences:                   2000
+                Percentage of Changes:                 100.00%
+                
+            - Source Changes:
+                Number of Source Changes:              78
+                Percentage of Source Changes:          3.90%
+                
+            - Target Changes:
+                Number of Target Changes:              118
+                Percentage of Target Changes:          4.63%
+                
+            - Failures to Find (by at least one human):
+                Number:                                76
+                Percentage:                            97.44%
+                
+            - Failures to Find (by all humans):
+                Number:                                75
+                Percentage:                            96.15%
+
+            
+Generating markdown report...
+Processing nasgec_v3/tmp/handle_leakage/nasgec.exam.para...
+
+            Changes Summary
+            ----------------------------------------------------------------
+            - Overall Changes:
+                Number of Changes:                     2550
+                Number of Sentences:                   2550
+                Percentage of Changes:                 100.00%
+                
+            - Source Changes:
+                Number of Source Changes:              69
+                Percentage of Source Changes:          2.71%
+                
+            - Target Changes:
+                Number of Target Changes:              61
+                Percentage of Target Changes:          1.54%
+                
+            - Failures to Find (by at least one human):
+                Number:                                40
+                Percentage:                            57.97%
+                
+            - Failures to Find (by all humans):
+                Number:                                39
+                Percentage:                            56.52%
+
+            
+Generating markdown report...

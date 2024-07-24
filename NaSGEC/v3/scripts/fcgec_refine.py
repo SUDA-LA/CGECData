@@ -48,8 +48,9 @@ def main(args):
                 new_tgts.append(tgt)
             all_cnt += 1
             print(idx, src, "\t".join(new_tgts), sep="\t", file=f_out)
-        print(f'{file_name}: Correct {src_csc_cnt}/{all_cnt} input sentences that have annotation errors.')
-        print(f'{file_name}: Correct {tgt_csc_cnt}/{all_cnt} reference sentences that have annotation errors.')
+        if args.verbose:
+            print(f'{file_name}: Correct {src_csc_cnt}/{all_cnt} input sentences that have annotation errors.')
+            print(f'{file_name}: Correct {tgt_csc_cnt}/{all_cnt} reference sentences that have annotation errors.')
         f_data.close()
         f_out.close()
 
@@ -60,5 +61,6 @@ if __name__ == '__main__':
     parser.add_argument("--out_dir", help="dir of all output datasets", required=True)
     parser.add_argument("--file_names", help="CGEC file names, split by english comm", required=True)
     parser.add_argument("--annotation_file", help="manual FCGEC annotation results", required=True)
+    parser.add_argument("--verbose", action="store_true", help="print log")
     args = parser.parse_args()
     main(args)

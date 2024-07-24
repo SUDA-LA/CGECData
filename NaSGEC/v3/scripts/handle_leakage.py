@@ -34,13 +34,14 @@ def remove_punct(line):
     return line
 
 
-def remove_repetition(data_dir, data_file, log_file):
+def remove_repetition(data_dir, data_file):
     """
     删除数据集内部的重复数据
     输入：文件路径
     输出：字典：{name:str,data:{{src:str,tgts:[str, str, ...]}}}
     """
-    print(f"\n{data_file} remove repetition:", file=log_file)
+    # if args.verbose:
+    #     print(f"\n{data_file} remove repetition:")
     data = open(os.path.join(data_dir, data_file))
     src_cnt = 0
     tgt_cnt = 0
@@ -60,14 +61,26 @@ def remove_repetition(data_dir, data_file, log_file):
             if tgt not in new_data[src]:
                 new_tgt_cnt += 1
                 new_data[src].append(tgt)
-    print(f"Original source sentences: {src_cnt}", file=log_file)
-    print(f"Original target sentences: {tgt_cnt}", file=log_file)
-    print(f"Unique source sentences: {new_src_cnt}", file=log_file)
-    print(f"Unique target sentences: {new_tgt_cnt}", file=log_file)
+    if args.verbose:
+        output_summary = f"""
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        {src_cnt}
+        - Target Sentences:                        {tgt_cnt}
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        {new_src_cnt}
+        - Target Sentences:                        {new_tgt_cnt}
+
+        """
+
+        print(output_summary)
+
     return {"name": data_file, "data": new_data}
 
 
-def extract_test_to_train(train, test, log_file, similarity_threshold=60):
+def extract_test_to_train(train, test, similarity_threshold=60):
     add_same_src_cnt = 0
     add_tgt_of_same_src_cnt = 0
     ignore_same_src_cnt = 0
@@ -80,7 +93,8 @@ def extract_test_to_train(train, test, log_file, similarity_threshold=60):
     delect_tgt_of_similar_src_cnt = 0
     train_name, train_data = train["name"], train["data"]
     test_name, test_data = test["name"], test["data"]
-    print(f"\nExtract same or similar source sentences from {test_name} to {train_name}", file=log_file)
+    if args.verbose:
+        print(f"\nExtract same or similar source sentences from {test_name} to {train_name}")
     test_srcs = [x for x in test_data.keys()]
     add_src_flag = False
     train_src_bm25 = fastbm25([remove_punct(x) for x in train_data.keys()])
@@ -134,41 +148,61 @@ def extract_test_to_train(train, test, log_file, similarity_threshold=60):
     for src in add_same_src_set:
         same_src_total_tgt_cnt += len(train_data[src])
     same_src_avg_tgt = round(Decimal(str(same_src_total_tgt_cnt / add_same_src_cnt)), 2)
-    print(f"Train data {train_name} find same source sentences: {add_same_src_cnt+ignore_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} merge same source sentences: {add_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add target sentences of same source sentences: {add_tgt_of_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add average target sentences of same source sentences: {add_avg_tgt_of_same_src}", file=log_file)
-    print(f"Train data {train_name} now have target sentences of same source sentences: {same_src_total_tgt_cnt}", file=log_file)
-    print(f"Train data {train_name} now have average target sentences of same source sentences: {same_src_avg_tgt}", file=log_file)
-    print(f"Train data {train_name} ignore same source sentences because of repetition: {ignore_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} ignore add target sentences of same source sentences because of repetition: {ignore_tgt_of_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add similar source sentences: {add_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add target sentences of similar source sentences: {add_tgt_of_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add average target sentences of similar source sentences: {add_avg_tgt_of_similar_src}", file=log_file)
-    print(f"Train data {train_name} add source sentences: {add_src_cnt}", file=log_file)
-    print(f"Train data {train_name} add target sentences: {add_tgt_cnt}", file=log_file)
-    print(f"Train data {train_name} add average target sentences: {add_avg_tgt}", file=log_file)
-    print(f"Train data {train_name} now have source sentences: {new_train_src_cnt}", file=log_file)
-    print(f"Train data {train_name} now have target sentences: {new_train_tgt_cnt}", file=log_file)
-    print(f"Test data {test_name} delect same source sentences: {delect_same_src_cnt}", file=log_file)
-    print(f"Test data {test_name} delect target sentences of same source sentences: {delect_tgt_of_same_src_cnt}", file=log_file)
-    print(f"Test data {test_name} delect similar source sentences: {delect_similar_src_cnt}", file=log_file)
-    print(f"Test data {test_name} delect target sentences of similar sentences: {delect_tgt_of_similar_src_cnt}", file=log_file)
-    print(f"Test data {test_name} delect source sentences: {delect_same_src_cnt+delect_similar_src_cnt}", file=log_file)
-    print(f"Test data {test_name} delect target sentences: {delect_tgt_of_same_src_cnt+delect_tgt_of_similar_src_cnt}", file=log_file)
-    print(f"Test data {test_name} now have source sentences: {new_test_src_cnt}", file=log_file)
-    print(f"Test data {test_name} now have target sentences: {new_test_tgt_cnt}", file=log_file)
+    if args.verbose:
+        output = f"""
+        Train Data: {train_name}
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Found:                                 {add_same_src_cnt + ignore_same_src_cnt}
+            Merged:                                {add_same_src_cnt}
+            Ignored (Repetition):                  {ignore_same_src_cnt}
+            Added Target Sentences:                {add_tgt_of_same_src_cnt}
+            Added Average Target Sentences:        {add_avg_tgt_of_same_src}
+            Total Target Sentences:                {same_src_total_tgt_cnt}
+            Total Average Target Sentences:        {same_src_avg_tgt}
+            Ignored Target Sentences (Repetition): {ignore_tgt_of_same_src_cnt}
+        - Similar Source Sentences:
+            Added:                                 {add_similar_src_cnt}
+            Added Target Sentences:                {add_tgt_of_similar_src_cnt}
+            Added Average Target Sentences:        {add_avg_tgt_of_similar_src}
+        - New Sentences:
+            Added Source Sentences:                {add_src_cnt}
+            Added Target Sentences:                {add_tgt_cnt}
+            Added Average Target Sentences:        {add_avg_tgt}
+        - Final Counts:
+            Source Sentences:                      {new_train_src_cnt}
+            Target Sentences:                      {new_train_tgt_cnt}
+
+        Test Data: {test_name}
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Deleted:                               {delect_same_src_cnt}
+            Deleted Target Sentences:              {delect_tgt_of_same_src_cnt}
+        - Similar Source Sentences:
+            Deleted:                               {delect_similar_src_cnt}
+            Deleted Target Sentences:              {delect_tgt_of_similar_src_cnt}
+        - Total Deleted:
+            Source Sentences:                      {delect_same_src_cnt + delect_similar_src_cnt}
+            Target Sentences:                      {delect_tgt_of_same_src_cnt + delect_tgt_of_similar_src_cnt}
+        - Final Counts:
+            Source Sentences:                      {new_test_src_cnt}
+            Target Sentences:                      {new_test_tgt_cnt}
+
+        """
+        print(output)
+
     return {"name": train_name, "data": train_data}, {"name": test_name, "data": test_data}
 
 
-def remove_train(train, test, log_file, similarity_threshold=60):
+def remove_train(train, test, similarity_threshold=60):
     delect_same_src_cnt = 0
     delect_tgt_of_same_src_cnt = 0
     delect_similar_src_cnt = 0
     delect_tgt_of_similar_src_cnt = 0
     train_name, train_data = train["name"], train["data"]
     test_name, test_data = test["name"], test["data"]
-    print(f"\nDelete same or similar source sentences between {train_name} and {test_name}", file=log_file)
+    if args.verbose:
+        print(f"\nDelete same or similar source sentences between {train_name} and {test_name}")
     test_srcs = [x for x in test_data.keys()]
     train_srcs = [x for x in train_data.keys()]
     train_src_bm25 = fastbm25([remove_punct(x) for x in train_data.keys()])
@@ -192,14 +226,27 @@ def remove_train(train, test, log_file, similarity_threshold=60):
     new_train_tgt_cnt = 0
     for tgts in train_data.values():
         new_train_tgt_cnt += len(tgts)
-    print(f"Train data {train_name} delect same source sentences: {delect_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} delect target sentences of same source sentences: {delect_tgt_of_same_src_cnt}", file=log_file)
-    print(f"Train data {train_name} delect similar source sentences: {delect_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} delect target sentences of similar source sentences: {delect_tgt_of_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} delect source sentences: {delect_same_src_cnt+delect_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} delect target sentences: {delect_tgt_of_same_src_cnt+delect_tgt_of_similar_src_cnt}", file=log_file)
-    print(f"Train data {train_name} now have source sentences: {new_train_src_cnt}", file=log_file)
-    print(f"Train data {train_name} now have target sentences: {new_train_tgt_cnt}", file=log_file)
+    if args.verbose:
+
+        train_data_deletion_summary = f"""
+        Train Data: {train_name} Deletion Summary
+        ----------------------------------------------------------------
+        - Deleted Same Source Sentences:
+            Source Sentences:                      {delect_same_src_cnt}
+            Target Sentences:                      {delect_tgt_of_same_src_cnt}
+        - Deleted Similar Source Sentences:
+            Source Sentences:                      {delect_similar_src_cnt}
+            Target Sentences:                      {delect_tgt_of_similar_src_cnt}
+        - Total Deleted:
+            Source Sentences:                      {delect_same_src_cnt + delect_similar_src_cnt}
+            Target Sentences:                      {delect_tgt_of_same_src_cnt + delect_tgt_of_similar_src_cnt}
+        - Final Counts:
+            Source Sentences:                      {new_train_src_cnt}
+            Target Sentences:                      {new_train_tgt_cnt}
+        """
+
+        print(train_data_deletion_summary)
+
     return {"name": train_name, "data": train_data}
 
 
@@ -214,33 +261,44 @@ def write_to_file(data, out_dir):
 def main(args):
     if not os.path.exists(args.out_dir):
         os.makedirs(args.out_dir)
-    log_file = open(args.log_path, "w")
-    print("=" * 50 + " Data Remove Repetition " + "=" * 50, file=log_file)
-    train = remove_repetition(args.data_dir, args.train_file, log_file)
+    if args.verbose:
+        print("=" * 50 + " Data Remove Repetition " + "=" * 50)
+    train = remove_repetition(args.data_dir, args.train_file)
     extract_tests = []
     frozen_tests = []
     new_extract_tests = []
     assert args.extract_test_files is not None or args.frozen_test_files is not None
     if args.extract_test_files is not None:
         for extract_test_file in args.extract_test_files.split(","):
-            extract_tests.append(remove_repetition(args.data_dir, extract_test_file, log_file))
+            if args.verbose:
+                print("Remove Repetition:", extract_test_file)
+            extract_tests.append(remove_repetition(args.data_dir, extract_test_file))
     if args.frozen_test_files is not None:
         for frozen_test_file in args.frozen_test_files.split(","):
-            frozen_tests.append(remove_repetition(args.data_dir, frozen_test_file, log_file))
+            if args.verbose:
+                print("Remove Repetition:", extract_test_file)
+            frozen_tests.append(remove_repetition(args.data_dir, frozen_test_file))
     if len(extract_tests) > 0:
-        print("\n" + "=" * 50 + " Extract Test Sentences " + "=" * 50, file=log_file)
+        if args.verbose:
+            print("\n" + "=" * 50 + " Extract Test Sentences " + "=" * 50)
         for extract_test in extract_tests:
-            train, extract_test = extract_test_to_train(train, extract_test, log_file, args.similarity_threshold)
+            if args.verbose:
+                print(f"Extract Test Sentences from {extract_test['name']} to {train['name']}")
+            train, extract_test = extract_test_to_train(train, extract_test, args.similarity_threshold)
             new_extract_tests.append(extract_test)
     if len(extract_tests) > 0 or len(frozen_tests) > 0:
-        print("\n" + "=" * 50 + " Remove Train Sentences " + "=" * 50, file=log_file)
+        if args.verbose:
+            print("\n" + "=" * 50 + " Remove Train Sentences " + "=" * 50)
         for extract_test in new_extract_tests:
             write_to_file(extract_test, args.out_dir)
-            train = remove_train(train, extract_test, log_file, args.similarity_threshold)
+            if args.verbose:
+                print(f"Remove Train Sentences between {train['name']} and {extract_test['name']}")
+            train = remove_train(train, extract_test, args.similarity_threshold)
         for frozen_test in frozen_tests:
-            train = remove_train(train, frozen_test, log_file, args.similarity_threshold)
+            if args.verbose:
+                print(f"Remove Train Sentences between {train['name']} and {frozen_test['name']}")
+            train = remove_train(train, frozen_test, args.similarity_threshold)
         write_to_file(train, args.out_dir)
-    log_file.close()
 
 
 if __name__ == '__main__':
@@ -251,6 +309,6 @@ if __name__ == '__main__':
     parser.add_argument("--frozen_test_files", help="test file names purely for evaluation, split by english comma", default=None)
     parser.add_argument("--out_dir", help="output dir", default="./data_leakage_processed")
     parser.add_argument("--similarity_threshold", type=float, help="similarity threshold", default=60)
+    parser.add_argument("--verbose", action="store_true", help="print log")
     args = parser.parse_args()
-    args.log_path = os.path.join(args.out_dir, "handle_leakage.log")
     main(args)

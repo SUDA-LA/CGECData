@@ -1,1 +1,0 @@
-We get [nacgec_all_type.json](https://github.com/masr2000/NaCGEC/blob/main/data/nacgec_all_type.json) and turn it into para format from the official GitHub repository of NaCGEC.

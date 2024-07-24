@@ -1,1 +1,4 @@
-在论文[Towards Better Utilization of Multi-Reference Training Data for Chinese Grammatical Error Correction](https://github.com/ymliucs/Publications/blob/main/MrGEC(ACL'24%20Findings).pdf)中，我们发现中午母语GEC数据存在严重的数据泄露问题，我们在这篇论文的[官方仓库](https://github.com/ymliucs/MrGEC)开源了处理代码和处理的数据，得到FCGEC-V2和NaSGEC-V2以及NaCGEC-V2。
+# NaSGEC-v2
+
++ In our ACL'24 paper [Towards Better Utilization of Multi-Reference Training Data for Chinese Grammatical Error Correction](https://github.com/ymliucs/Publications/blob/main/MrGEC(ACL'24%20Findings).pdf), we discover that FCGEC-Train and NaSGEC-Exam/NaCGEC suffer from a significant data leakage issue, even when utilizing [FCGEC_train_filtered.json](https://github.com/xlxwalex/FCGEC/blob/main/data/FCGEC_train_filtered.json).
++ We open-source the corresponding processing code and processed data in the [official repository](https://github.com/ymliucs/MrGEC) of this paper.

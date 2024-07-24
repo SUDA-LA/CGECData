@@ -1,0 +1,231 @@
+================================================== Data Remove Repetition ==================================================
+
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        35354
+        - Target Sentences:                        43283
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        35343
+        - Target Sentences:                        43262
+
+        
+Remove Repetition: nasgec.exam.para
+
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        6900
+        - Target Sentences:                        10054
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        6569
+        - Target Sentences:                        9736
+
+        
+Remove Repetition: nacgec.para
+
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        6368
+        - Target Sentences:                        7567
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        6368
+        - Target Sentences:                        7567
+
+        
+Remove Repetition: nacgec.para
+
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        2000
+        - Target Sentences:                        2549
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        2000
+        - Target Sentences:                        2549
+
+        
+Remove Repetition: nacgec.para
+
+        Original Data:
+        ----------------------------------------------------------------
+        - Source Sentences:                        3000
+        - Target Sentences:                        0
+
+        Unique Sentences:
+        ----------------------------------------------------------------
+        - Source Sentences:                        3000
+        - Target Sentences:                        0
+
+        
+
+================================================== Extract Test Sentences ==================================================
+Extract Test Sentences from nasgec.exam.para to fcgec.train.para
+
+Extract same or similar source sentences from nasgec.exam.para to fcgec.train.para
+
+        Train Data: fcgec.train.para
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Found:                                 2869
+            Merged:                                1136
+            Ignored (Repetition):                  1733
+            Added Target Sentences:                1647
+            Added Average Target Sentences:        1.45
+            Total Target Sentences:                3244
+            Total Average Target Sentences:        2.86
+            Ignored Target Sentences (Repetition): 2381
+        - Similar Source Sentences:
+            Added:                                 1150
+            Added Target Sentences:                1756
+            Added Average Target Sentences:        1.53
+        - New Sentences:
+            Added Source Sentences:                2286
+            Added Target Sentences:                3403
+            Added Average Target Sentences:        1.49
+        - Final Counts:
+            Source Sentences:                      36493
+            Target Sentences:                      46665
+
+        Test Data: nasgec.exam.para
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Deleted:                               2869
+            Deleted Target Sentences:              4028
+        - Similar Source Sentences:
+            Deleted:                               1150
+            Deleted Target Sentences:              1756
+        - Total Deleted:
+            Source Sentences:                      4019
+            Target Sentences:                      5784
+        - Final Counts:
+            Source Sentences:                      2550
+            Target Sentences:                      3952
+
+        
+Extract Test Sentences from nacgec.para to fcgec.train.para
+
+Extract same or similar source sentences from nacgec.para to fcgec.train.para
+
+        Train Data: fcgec.train.para
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Found:                                 2120
+            Merged:                                704
+            Ignored (Repetition):                  1416
+            Added Target Sentences:                772
+            Added Average Target Sentences:        1.10
+            Total Target Sentences:                1863
+            Total Average Target Sentences:        2.65
+            Ignored Target Sentences (Repetition): 1764
+        - Similar Source Sentences:
+            Added:                                 1096
+            Added Target Sentences:                1305
+            Added Average Target Sentences:        1.19
+        - New Sentences:
+            Added Source Sentences:                1800
+            Added Target Sentences:                2077
+            Added Average Target Sentences:        1.15
+        - Final Counts:
+            Source Sentences:                      37589
+            Target Sentences:                      48742
+
+        Test Data: nacgec.para
+        ----------------------------------------------------------------
+        - Same Source Sentences:
+            Deleted:                               2120
+            Deleted Target Sentences:              2536
+        - Similar Source Sentences:
+            Deleted:                               1096
+            Deleted Target Sentences:              1305
+        - Total Deleted:
+            Source Sentences:                      3216
+            Target Sentences:                      3841
+        - Final Counts:
+            Source Sentences:                      3152
+            Target Sentences:                      3726
+
+        
+
+================================================== Remove Train Sentences ==================================================
+Remove Train Sentences between fcgec.train.para and nasgec.exam.para
+
+Delete same or similar source sentences between fcgec.train.para and nasgec.exam.para
+
+        Train Data: fcgec.train.para Deletion Summary
+        ----------------------------------------------------------------
+        - Deleted Same Source Sentences:
+            Source Sentences:                      0
+            Target Sentences:                      0
+        - Deleted Similar Source Sentences:
+            Source Sentences:                      4
+            Target Sentences:                      5
+        - Total Deleted:
+            Source Sentences:                      4
+            Target Sentences:                      5
+        - Final Counts:
+            Source Sentences:                      37585
+            Target Sentences:                      48737
+        
+Remove Train Sentences between fcgec.train.para and nacgec.para
+
+Delete same or similar source sentences between fcgec.train.para and nacgec.para
+
+        Train Data: fcgec.train.para Deletion Summary
+        ----------------------------------------------------------------
+        - Deleted Same Source Sentences:
+            Source Sentences:                      0
+            Target Sentences:                      0
+        - Deleted Similar Source Sentences:
+            Source Sentences:                      4
+            Target Sentences:                      5
+        - Total Deleted:
+            Source Sentences:                      4
+            Target Sentences:                      5
+        - Final Counts:
+            Source Sentences:                      37581
+            Target Sentences:                      48732
+        
+Remove Train Sentences between fcgec.train.para and fcgec.dev.para
+
+Delete same or similar source sentences between fcgec.train.para and fcgec.dev.para
+
+        Train Data: fcgec.train.para Deletion Summary
+        ----------------------------------------------------------------
+        - Deleted Same Source Sentences:
+            Source Sentences:                      95
+            Target Sentences:                      131
+        - Deleted Similar Source Sentences:
+            Source Sentences:                      814
+            Target Sentences:                      1064
+        - Total Deleted:
+            Source Sentences:                      909
+            Target Sentences:                      1195
+        - Final Counts:
+            Source Sentences:                      36672
+            Target Sentences:                      47537
+        
+Remove Train Sentences between fcgec.train.para and fcgec.test.para
+
+Delete same or similar source sentences between fcgec.train.para and fcgec.test.para
+
+        Train Data: fcgec.train.para Deletion Summary
+        ----------------------------------------------------------------
+        - Deleted Same Source Sentences:
+            Source Sentences:                      64
+            Target Sentences:                      99
+        - Deleted Similar Source Sentences:
+            Source Sentences:                      406
+            Target Sentences:                      567
+        - Total Deleted:
+            Source Sentences:                      470
+            Target Sentences:                      666
+        - Final Counts:
+            Source Sentences:                      36202
+            Target Sentences:                      46871
+        

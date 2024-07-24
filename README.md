@@ -4,10 +4,10 @@ We open source our Chinese GEC dataset in this repository. In addition, we colle
 ## File Directory Introduction
 
 + **`MuCGEC/`**:
-  + `v1-NAACL22/`: We open source [MuCGEC-Test](MuCGEC/MuCGEC-V1/mucgec.test.m2) in M2 format for the first time, which yields the same results as those obtained using the online [Tianchi](https://tianchi.aliyun.com/dataset/131328/submission) platform. 
+  + **`v1-NAACL22/`**: We open source [MuCGEC-Test](MuCGEC/MuCGEC-V1/mucgec.test.m2) in M2 format for the first time, which yields the same results as those obtained using the online [Tianchi](https://tianchi.aliyun.com/dataset/131328/submission) platform. 
 + **`NaSGEC/`**:
   + **`v1-ACL23/`**: We open source the NaSGEC dataset for the first time.
-  + **`v2-ACL24/`**: We handle the data leakage problem for FCGEC, NaSGEC-Exam, and NaCGEC.
+  + **`v2-ACL24/`**: We handle the data leakage issue for FCGEC, NaSGEC-Exam, and NaCGEC.
   + **`v3/`**: We conduct further cleaning on FCGEC, NaSGEC-Exam, and NaCGEC.
 
 ## Evaluation
@@ -16,7 +16,7 @@ We strongly recommend you use [ChERRANT](https://github.com/HillZhang1999/MuCGEC
 
 ## Citation
 
-If you find this repo is useful for your research, please selectively cite the following papers:
+If you find this repo is useful for your research, please selectively cite the following papers.
 
 ### MuCGEC
 ```
@@ -114,4 +114,4 @@ If you find this repo is useful for your research, please selectively cite the f
 ```
 
 ## Contact
-If you have any problems, please make an issue or contact us at liu.yumeng@foxmail.com. 
+If you have any problems, please make an issue or contact us at liu.yumeng@foxmail.com / Jacob_Zhou@outlook.com. 

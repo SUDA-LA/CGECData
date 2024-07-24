@@ -1,1 +1,0 @@
-Please refer to [NaSGEC](https://github.com/HillZhang1999/NaSGEC)'s official repository for details. Note: To use ChERRANT to benchmark nasgec.[xxx].test.m2, please add the --bpe option when converting the prediction file to a prediction M2 file, because the M2 file we publish uses BPE to encode English words when extracting reference edits.

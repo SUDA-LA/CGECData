@@ -1,4 +1,9 @@
-与v2-ACL24相比，v3主要做了以下优化，参考脚本在这里[process_cgec_data.sh](process_cgec_data.sh)。
-- 手动修复了FCGEC几条标注错误，参见https://github.com/xlxwalex/FCGEC/issues/25 和 https://github.com/xlxwalex/FCGEC/issues/40。
-- 使用我们自己开发的先进的CSC模型找出FCGEC-Dev和NaSGEC-Exam里面不合理的错别字错误（比如离谱的OCR错误），并进行人工矫正
-- 删除NaSGEC-Exam里的特殊标签句子，比如["没有错误", "噪音数据", "句意不明", "无法标注", "歧义句"] 等。
+# NaSGEC-v3
+
+## 📢 Important Update
+
++ We delete the special label references in NaSGEC-Exam and NaCGEC, such as ```["没有错误", "噪音数据", "句意不明", "无法标注", "歧义句"]```, etc.
++ We used the same data leakage handling approaches as in NaSGEC-V2.
++ We use our advanced CSC model (The paper and code will be available soon) to find unreasonable spell errors (such as serious OCR errors) in FCGEC-Dev and NaSGEC-Exam, and perform manual annotation verification.
++ We manually correct some annotation errors in FCGEC, see https://github.com/xlxwalex/FCGEC/issues/25 and https://github.com/xlxwalex/FCGEC/issues/40.
++ The script for all processes is here [process_cgec_data.sh](process_cgec_data.sh).

@@ -1,22 +1,20 @@
-NaSGEC请参见[NaSGEC](https://github.com/HillZhang1999/NaSGEC)的官方仓库，我们在这个目录公布了原始NaSGEC-Exam数据，其他NaSGEC数据在[这里](../v3/raw_cgec/NaSGEC/README.md)。
+# NaSGEC-v1
+For detailed information about the NaSGEC dataset, please refer to this repository: [HillZhang1999/NaSGEC](https://github.com/HillZhang1999/NaSGEC).
 
-FCGEC 和 [FCGEC](https://github.com/xlxwalex/FCGEC/tree/main/data) 官方在 GitHub 发布的数据完全一样，我们将数据处理成了如下的 para 形式：
+## File Directory Introduction
++ **```NaSGEC/```**: We open-source the NaSGEC dataset for the first time.
+    + Please add the ```--bpe``` option when evaluate nasgec.[exam/media/thesis].test.m2 using ChERRANT, this option is not required for all other datasets.
++ **```FCGEC/```**: We collect the [FCGEC](https://github.com/xlxwalex/FCGEC/tree/main/data) dataset and convert each instance (e.g., 2 references) in it into the following para format: ```idx \t input_sentence \t reference-1 \t reference-2```
+    + We process FCGEC to remove duplicates. First, we merged all references under the identical input sentence. Then, we deduplicated the references for identical input sentence.
+        + For example, consider the following two instances:
+            ```
+            1 \t input_sentence-1 \t reference-1 \t reference-2
+            2 \t input_sentence-1 \t reference-2 \t reference-3
+            ```
+        + will be turned into the following format: 
+            ```
+            1 \t input_sentence-1 \t reference-1 \t reference-2 \t reference-3
+            ```
+    + 2. In the first official release of the FCGEC training dataset, there were input sentences that were identical to those in the development and test sets: https://github.com/xlxwalex/FCGEC/issues/26. We utilized the officially released filtered version [FCGEC_train_filtered.json](https://github.com/xlxwalex/FCGEC/blob/main/data/FCGEC_train_filtered.json) as our source for the training set, which had removed these leaked instances from the original training data.
 
-```
-[idx][\t][src][\t][tgt][\t][tgt] ...
-```
-
-Note:
-1. 我们对数据进行了去重处理，首先合并了相同 src 下的所有 tgt，其次对相同 src 的 tgt 进行了去重。
-    例如如下的两个样本
-    ```
-    1   src1   tgt1   tgt2
-    2   src1   tgt2   tgt3
-    ```
-    合并后变为
-    ```
-    1   src1   tgt1   tgt2   tgt3
-    ```
-2. FCGEC 官方发布的第一版 train 数据，存在和 dev 和 test 完全相同的 src 的情况，我们使用了官方发布的过滤版本，从训练集删去了这些样本 
-
-NaCGEC数据和[NaCGEC](https://github.com/masr2000/NaCGEC)的官方仓库完全一样，我们使用all_type数据作为测试集。
++ **```NaCGEC/```**: We collect the [NaCGEC](https://github.com/masr2000/NaCGEC) dataset and turn it into para format. Due to the very small number of instances in NaCGEC-Dev, we merged NaCGEC-Dev and NaCGEC-Test to create ```nacgec.para```, which we are using as a new test set.

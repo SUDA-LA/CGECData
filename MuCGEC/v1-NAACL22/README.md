@@ -1,1 +1,6 @@
-我们在[HillZhang1999/MuCGEC](https://github.com/HillZhang1999/MuCGEC/tree/main/data/MuCGEC)开源了MuCGEC的开发集和测试集的输入，并在[天池平台](https://tianchi.aliyun.com/dataset/131328/submission)开放了在线评测。在这个仓库，我们开放了MuCGEC-Test的M2数据，以便研究人员可以获得和天池平台相同的结果（请使用[ChERRANT](https://github.com/HillZhang1999/MuCGEC/tree/main/scorers/ChERRANT)进行评估）。
+# MuCGEC-v1
+
+For detailed information about the MuCGEC dataset, please refer to this repository: [HillZhang1999/MuCGEC](https://github.com/HillZhang1999/MuCGEC).
+
+## 📢 Important Update
+We have open-sourced the MuCGEC-Test data in [M2](mucgec.test.m2) format. You can now achieve identical evaluation results to those on the [Tianchi](https://tianchi.aliyun.com/dataset/131328/submission) platform using the [ChERRANT](https://github.com/HillZhang1999/MuCGEC/tree/main/scorers/ChERRANT) tool.

@@ -35,7 +35,8 @@ def main(args):
                 continue
             print(idx, src, "\t".join(new_tgts), sep="\t", file=f_out)
             idx += 1
-        print(f'{file_name}: Remove {remove_tgt_cnt}/{all_cnt} reference sentences labeled with special tag.')
+        if args.verbose:
+            print(f'{file_name}: Remove {remove_tgt_cnt}/{all_cnt} reference sentences labeled with special tag.')
         f_data.close()
         f_out.close()
 
@@ -45,5 +46,6 @@ if __name__ == '__main__':
     parser.add_argument("--data_dir", help="dir of all datasets needed processing", required=True)
     parser.add_argument("--out_dir", help="dir of all output datasets", required=True)
     parser.add_argument("--file_names", help="CGEC file names, split by english comm", required=True)
+    parser.add_argument("--verbose", action="store_true", help="print log")
     args = parser.parse_args()
     main(args)
