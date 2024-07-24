@@ -52,7 +52,7 @@ python scripts/fcgec_refine.py \
     --data_dir nasgec_v3/tmp/csc_clean \
     --out_dir nasgec_v3/tmp/fcgec_refine \
     --file_names fcgec.train.para,fcgec.dev.para \
-    --annotation_file data_refinement/fcgec_refine.2024.7.23.jsonl \
+    --annotation_file data_refinement/fcgec_refine.2024.7.24.jsonl \
     --verbose
 
 # Move processed files to nasgec_v3

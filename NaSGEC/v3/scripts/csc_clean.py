@@ -7,6 +7,7 @@ import os
 import json
 import argparse
 
+
 class Alignment:
     # Alignment adapted from: https://github.com/chrisjbryant/errant/blob/main/errant/alignment.py
     # Input 1: An original text string parsed by spacy
@@ -31,8 +32,7 @@ class Alignment:
         o_low = [o.lower() for o in self.orig]
         c_low = [c.lower() for c in self.cor]
         # Create the cost_matrix and the op_matrix
-        cost_matrix = [[0.0 for j in range(c_len + 1)]
-                       for i in range(o_len + 1)]
+        cost_matrix = [[0.0 for j in range(c_len + 1)] for i in range(o_len + 1)]
         op_matrix = [["O" for j in range(c_len + 1)] for i in range(o_len + 1)]
         # Fill in the edges
         for i in range(1, o_len + 1):
@@ -63,10 +63,14 @@ class Alignment:
                     l = costs.index(min(costs))
                     # Save the cost and the op in the matrices
                     cost_matrix[i + 1][j + 1] = costs[l]
-                    if l == 0: op_matrix[i + 1][j + 1] = "T" + str(k + 1)
-                    elif l == 1: op_matrix[i + 1][j + 1] = "S"
-                    elif l == 2: op_matrix[i + 1][j + 1] = "I"
-                    else: op_matrix[i + 1][j + 1] = "D"
+                    if l == 0:
+                        op_matrix[i + 1][j + 1] = "T" + str(k + 1)
+                    elif l == 1:
+                        op_matrix[i + 1][j + 1] = "S"
+                    elif l == 2:
+                        op_matrix[i + 1][j + 1] = "I"
+                    else:
+                        op_matrix[i + 1][j + 1] = "D"
         # Return the matrices
         return cost_matrix, op_matrix
 
@@ -104,6 +108,7 @@ class Alignment:
         align_seq.reverse()
         return align_seq
 
+
 md_styles = {
     "ins": (
         f"<span style='color:blue;font-weight:700;border-bottom: 1.5px dotted black;'>",
@@ -120,19 +125,20 @@ md_styles = {
 }
 
 error_types = [
-    '音似错别字', 
-    '形似错别字', 
-    '“的地得”误用', 
-    '繁体字/异体字', 
-    '其他错别字', 
-    '符号错误', 
-    '多字', 
+    '音似错别字',
+    '形似错别字',
+    '“的地得”误用',
+    '繁体字/异体字',
+    '其他错别字',
+    '符号错误',
+    '多字',
     '漏字',
-    '字序', 
-    '人名错误', 
-    '专有名词错误', 
+    '字序',
+    '人名错误',
+    '专有名词错误',
     '句法错误',
 ]
+
 
 def main(args):
     assert args.annotation_file.endswith(".jsonl")
@@ -206,7 +212,7 @@ def main(args):
                     tgt_csc_cnt += 1
                 new_tgts.append(tgt)
             all_cnt += 1
-            new_line = f"{idx}\t{new_src}\t" + "\t".join(tgts)
+            new_line = f"{idx}\t{new_src}\t" + "\t".join(new_tgts)
             if new_line != line:
                 n_changes += 1
             this_change_targets = len([1 for s, v in zip(tgts, new_tgts) if s != v])
@@ -281,9 +287,13 @@ def main(args):
                 writer.write(f'  - Percentage of target with spelling errors: {n_change_targets / n_target_sentences * 100:.2f}%\n\n')
                 writer.write(f'- Human Verification: \n')
                 writer.write(f'  - Number of simple text errors that failed to be identified by at least one human: {n_fail_to_find_by_humans}\n')
-                writer.write(f'  - Percentage of simple text errors that failed to be identified by at least one human: {n_fail_to_find_by_humans / n_change_sources * 100:.2f}%\n\n')
+                writer.write(
+                    f'  - Percentage of simple text errors that failed to be identified by at least one human: {n_fail_to_find_by_humans / n_change_sources * 100:.2f}%\n\n'
+                )
                 writer.write(f'  - Number of simple text errors that failed to be identified by all human: {n_fail_to_find_by_all_humans}\n')
-                writer.write(f'  - Percentage of simple text errors that failed to be identified by all human: {n_fail_to_find_by_all_humans / n_change_sources * 100:.2f}%\n\n')
+                writer.write(
+                    f'  - Percentage of simple text errors that failed to be identified by all human: {n_fail_to_find_by_all_humans / n_change_sources * 100:.2f}%\n\n'
+                )
                 writer.write('## Error Distribution\n')
                 writer.write(f'| Error Type | Number of Refinements | Percentage |\n')
                 writer.write(f'| --- | --- | --- |\n')
@@ -317,6 +327,7 @@ def main(args):
                                 formatted_verified += md_styles['del'][0] + id[s_b:s_e] + md_styles['del'][1]
                         writer.write(f'> **Refined**:  {formatted_verified}\n\n')
                     writer.write('\n')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

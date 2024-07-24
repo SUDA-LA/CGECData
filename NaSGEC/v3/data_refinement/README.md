@@ -1,1 +1,0 @@
-We use our recently proposed state-of-the-art Chinese Spell Checking (CSC) model to screen out sentences (either input or reference) with potential serious unreasonable spelling errors (such as those caused by OCR), and then we manually annotate these sentences. The relevant models will be open sourced in the near future.
