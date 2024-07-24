@@ -1,4 +1,4 @@
-# GECData
+# CGECData
 We open source MuCGEC and NaSGEC in this repository. In addition, we collect and process other mainstream Chinese GEC datasets, i.e., FCGEC and NaCGEC.
 
 ## File Directory Introduction
