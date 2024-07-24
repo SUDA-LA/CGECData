@@ -4,7 +4,7 @@ We open source MuCGEC and NaSGEC in this repository. In addition, we collect and
 ## File Directory Introduction
 
 + **`MuCGEC/`**:
-  + **`v1-NAACL22/`**: We open source [MuCGEC-Test](MuCGEC/MuCGEC-V1/mucgec.test.m2) in M2 format for the first time, which yields the same results as those obtained using the online [Tianchi](https://tianchi.aliyun.com/dataset/131328/submission) platform. 
+  + **`v1-NAACL22/`**: We open source [MuCGEC-Test](MuCGEC/MuCGEC-v1/mucgec.test.m2) in M2 format for the first time, which yields the same results as those obtained using the online [Tianchi](https://tianchi.aliyun.com/dataset/131328/submission) platform. 
 + **`NaSGEC/`**:
   + **`v1-ACL23/`**: We open source the NaSGEC dataset for the first time.
   + **`v2-ACL24/`**: We handle the data leakage issue for FCGEC, NaSGEC-Exam, and NaCGEC.
