@@ -72,46 +72,5 @@ If you find this repo is useful for your research, please selectively cite the f
 }
 ```
 
-### FCGEC
-```
-@inproceedings{xu-etal-2022-fcgec,
-    title = "{{FCGEC}: Fine-Grained Corpus for {C}hinese Grammatical Error Correction}",
-    author = "Xu, Lvxiaowei  and
-      Wu, Jianwang  and
-      Peng, Jiawei  and
-      Fu, Jiayu  and
-      Cai, Ming",
-    booktitle = "Findings of EMNLP",
-    year = "2022",
-    address = "Abu Dhabi, United Arab Emirates",
-    url = "https://aclanthology.org/2022.findings-emnlp.137",
-    pages = "1900--1918",
-}
-```
-
-### NaCGEC
-```
-@inproceedings{ma-etal-2022-linguistic,
-    title = "{Linguistic Rules-Based Corpus Generation for Native {C}hinese Grammatical Error Correction}",
-    author = "Ma, Shirong  and
-      Li, Yinghui  and
-      Sun, Rongyi  and
-      Zhou, Qingyu  and
-      Huang, Shulin  and
-      Zhang, Ding  and
-      Yangning, Li  and
-      Liu, Ruiyang  and
-      Li, Zhongli  and
-      Cao, Yunbo  and
-      Zheng, Haitao  and
-      Shen, Ying",
-    booktitle = "Findings of EMNLP",
-    year = "2022",
-    address = "Abu Dhabi, United Arab Emirates",
-    url = "https://aclanthology.org/2022.findings-emnlp.40",
-    pages = "576--589",
-}
-```
-
 ## Contact
 If you have any problems, please make an issue or contact us at liu.yumeng@foxmail.com / Jacob_Zhou@outlook.com. 
