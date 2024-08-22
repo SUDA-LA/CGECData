@@ -1,0 +1,3 @@
+[submodule "NaSGEC/v3/CTCToolKit"]
+	path = NaSGEC/v3/CTCToolKit
+	url = git@github.com:SUDA-LA/CTCToolKit.git
