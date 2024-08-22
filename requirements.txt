@@ -1,2 +1,0 @@
-fastbm25==0.0.2
-sacrebleu==2.4.2
