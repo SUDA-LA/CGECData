@@ -18,7 +18,7 @@ cp ../v1-ACL23/NaSGEC/NaSGEC-Thesis/nasgec.thesis.para nasgec_v3/tmp/
 cp ../v1-ACL23/NaCGEC/nacgec.para nasgec_v3/tmp/
 
 # Remove special tag in NaSGEC and NaCGEC
-python scripts/remove_special_tag.py \
+python CTCToolKit/scripts/data/remove_special_tag.py \
     --data_dir nasgec_v3/tmp \
     --out_dir nasgec_v3/tmp/remove_special_tag \
     --file_names nasgec.exam.para,nasgec.media.para,nasgec.thesis.para,nacgec.para \
@@ -28,7 +28,7 @@ python scripts/remove_special_tag.py \
 mv nasgec_v3/tmp/fcgec.train.para nasgec_v3/tmp/remove_special_tag/
 mv nasgec_v3/tmp/fcgec.dev.para nasgec_v3/tmp/remove_special_tag/
 mv nasgec_v3/tmp/fcgec.test.para nasgec_v3/tmp/remove_special_tag/
-python scripts/handle_leakage.py \
+python CTCToolKit/scripts/data/handle_leakage.py \
     --data_dir nasgec_v3/tmp/remove_special_tag \
     --out_dir nasgec_v3/tmp/handle_leakage \
     --train_file fcgec.train.para \
@@ -38,7 +38,7 @@ python scripts/handle_leakage.py \
 
 # Correct unreasonable csc error for FCGEC-Dev and NaSGEC-Exam
 mv nasgec_v3/tmp/remove_special_tag/fcgec.dev.para nasgec_v3/tmp/handle_leakage/
-python scripts/csc_clean.py \
+python CTCToolKit/scripts/data/csc_clean.py \
     --data_dir nasgec_v3/tmp/handle_leakage \
     --out_dir nasgec_v3/tmp/csc_clean \
     --file_names fcgec.dev.para,nasgec.exam.para \
@@ -48,7 +48,7 @@ python scripts/csc_clean.py \
 
 # Correct annotation error for FCGEC-Train and FCGEC-Dev
 mv nasgec_v3/tmp/handle_leakage/fcgec.train.para nasgec_v3/tmp/csc_clean/
-python scripts/fcgec_refine.py \
+python CTCToolKit/scripts/data/fcgec_refine.py \
     --data_dir nasgec_v3/tmp/csc_clean \
     --out_dir nasgec_v3/tmp/fcgec_refine \
     --file_names fcgec.train.para,fcgec.dev.para \
@@ -70,6 +70,6 @@ mv nasgec_v3/tmp/csc_clean/nasgec.exam.para nasgec_v3/
 mv nasgec_v3/tmp/csc_clean/*.para.cleaning_report.md nasgec_v3/log/
 
 # Clean-up tmp dir
-rm -rf nasgec_v3/tmp
+# rm -rf nasgec_v3/tmp
 
 }
