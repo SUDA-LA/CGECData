@@ -1,6 +1,10 @@
 # CGECData
 We open source MuCGEC and NaSGEC in this repository. In addition, we collect and process other mainstream Chinese GEC datasets, i.e., FCGEC and NaCGEC.
 
+## Data Access
+
+Once you use the data from this repo, it means that you agree to the [data sharing agreement](2025.02.18_MuCGEC_NaSGEC_Sharing_Agreement.docx) of MuCGEC and NaSGEC. You can directly use MuCGEC and NaSGEC-Exam. If you need to obtain NaSGEC-Media and NaSGEC-Thesis, you need to sign the data sharing agreement and sent it to Zhenghua Li (zhli13@suda.edu.cn).
+
 ## File Directory Introduction
 
 + **`MuCGEC/`**:
